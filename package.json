@@ -1,7 +1,7 @@
 {
-  "name": "e-commerce-dress-code",
+  "name": "e-commerce",
   "version": "1.0.0",
-  "description": "E-commerce Website \"Dress Code\" for Women Clothing",
+  "description": "E-commerce Website",
   "homepage": "https://github.com/yasminzin/e-commerce-nodejs#readme",
   "bugs": {
     "url": "https://github.com/yasminzin/e-commerce-nodejs/issues"
@@ -16,6 +16,17 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon --inspect server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.3",
+    "multer": "^1.4.5-lts.2",
+    "nodemailer": "^6.10.1"
   }
 }
