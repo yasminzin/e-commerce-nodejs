@@ -27,7 +27,13 @@ mongoose
   });
 
 // Middlewares
-app.use(express.json());
+
+// multipart/form-data : forms with file or when use form-data in postman >> sends files and texts in binary chunks (express can't understand it)
+
+// this middleware used to understand what sent in html forms
+// extended: true used to support nested objects
+app.use(express.urlencoded({ extended: true })); // handles only x-www-form-urlencoded
+app.use(express.json()); // handles only application/json
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -39,12 +45,12 @@ app.use(cors());
 // );
 
 // Routes
-// app.use("/users", usersRoutes);
-// app.use("/products", productsRoutes);
-// app.use("/brands", brandsRoutes);
-// app.use("/categories", categoriesRoutes);
-// app.use("/cart", cartRoutes);
-// app.use("/orders", ordersRoutes);
+app.use("/users", usersRoutes);
+app.use("/products", productsRoutes);
+app.use("/brands", brandsRoutes);
+app.use("/categories", categoriesRoutes);
+app.use("/cart", cartRoutes);
+app.use("/orders", ordersRoutes);
 
 app.use((error, req, res, next) => {
   if (error instanceof multer.MulterError) {

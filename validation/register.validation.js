@@ -3,28 +3,26 @@ const joi = require("joi");
 let baseUserSchema = joi.object({
   firstName: joi
     .string()
-
     .min(3)
     .max(15)
     .pattern(new RegExp("^[a-zA-Z]+$")),
   lastName: joi
     .string()
-
     .min(3)
     .max(15)
     .pattern(new RegExp("^[a-zA-Z]+$")),
   username: joi
     .string()
-
     .min(8)
     .pattern(new RegExp("^[a-zA-Z]{1,}[a-zA-Z0-9]*$")),
   email: joi
     .string()
-
     .pattern(
       new RegExp("^[a-zA-Z][a-zA-Z0-9]{2,}@[a-zA-Z]{2,10}.[a-zA-Z]{2,5}$")
     ),
-  password: joi.string(),
+  password: joi
+    .string()
+    .pattern(new RegExp("^[a-zA-Z][a-zA-Z0-9@$#%&*_-]{8,}$")),
   birthDate: joi.date().min("1950-01-01").max("2015-01-01"),
   phoneNumbers: joi
     .array()

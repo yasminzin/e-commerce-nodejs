@@ -56,12 +56,17 @@ const usersSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
+      validate: {
+        validator: function (v) {
+          return /^[a-zA-Z][a-zA-Z0-9@$#%&*_-]{8,}$/.test(v);
+        },
+        message: () =>
+          "Password must be at least 9 characters, start with a letter, and can include letters, numbers, and symbols like _ - @ $ # % & *",
+      },
     },
     birthDate: {
       type: Date,
       required: false,
-      min: "1940-01-01",
-      max: "2018-01-01",
     },
     phoneNumbers: {
       required: true,
@@ -111,7 +116,7 @@ const usersSchema = mongoose.Schema(
       type: Date,
     },
   },
-  { timestamps : true }
+  { timestamps: true }
 );
 
 usersSchema.pre("save", async function (next) {

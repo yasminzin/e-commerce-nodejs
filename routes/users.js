@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const usersControllers = require("../controllers/users");
-const cartControllers = require("../controllers/cart");
 const { validation } = require("../middlewares/validation");
 const registerSchema = require("../validation/register.validation");
 const loginSchema = require("../validation/login.validation");
@@ -21,7 +20,7 @@ router.delete("/:id", auth, usersControllers.deleteUser);
 
 router.patch("/:id", auth, usersControllers.updateUser);
 
-router.post("/login", validation(registerSchema.updateUserSchema), usersControllers.login);
+router.post("/login", validation(loginSchema), usersControllers.login);
 
 router.post("/forgot-password", usersControllers.forgotPassword);
 

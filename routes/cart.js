@@ -5,14 +5,20 @@ const { auth, blockRoles } = require("../middlewares/auth");
 
 router.use(auth);
 
-// router.get("/", auth, blockRoles("seller"), cartControllers.getCart);
+router.get("/", blockRoles("seller"), cartControllers.getCart);
 
-// router.post("/", blockRoles("seller"), cartControllers.addToCart);
+router.post(
+  "/",
+  blockRoles("seller"),
+  cartControllers.addToCart
+);
 
-// router.delete(
-//   "/:productId",
-//   blockRoles("seller"),
-//   cartControllers.removeFromCart
-// );
+// router.patch('/', blockRoles('seller'), cartControllers.updateCart);
+
+router.delete(
+  "/:productId",
+  blockRoles("seller"),
+  cartControllers.removeFromCart
+);
 
 module.exports = router;

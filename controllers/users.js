@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const { catchAsync } = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const productsModel = require("../models/products");
-const usersModel = require("../models/users");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
@@ -21,7 +20,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   if (users.length === 0) {
     return next(new AppError(404, "No users found"));
   }
-  res.status(200).json({ stauts: "success", message: users });
+  res.status(200).json({ status: "success", message: users });
 });
 
 exports.addUser = catchAsync(async (req, res, next) => {
